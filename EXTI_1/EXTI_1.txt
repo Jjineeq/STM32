@@ -1,0 +1,68 @@
+Configuration	EXTI_1
+STM32CubeMX 	6.6.1
+Date	09/19/2022
+MCU	STM32F429ZITx
+
+
+
+PERIPHERALS	MODES	FUNCTIONS	PINS
+
+
+
+Pin Nb	PINs	FUNCTIONs	LABELs
+56	PG0	GPIO_EXTI0	
+57	PG1	GPIO_EXTI1	
+87	PG2	GPIO_EXTI2	
+88	PG3	GPIO_EXTI3	
+114	PD0	GPIO_Output	
+115	PD1	GPIO_Output	
+116	PD2	GPIO_Output	
+117	PD3	GPIO_Output	
+118	PD4	GPIO_Output	
+119	PD5	GPIO_Output	
+122	PD6	GPIO_Output	
+123	PD7	GPIO_Output	
+PERIPHERALS	MODES	FUNCTIONS	PINS
+
+
+
+Pin Nb	PINs	FUNCTIONs	LABELs
+56	PG0	GPIO_EXTI0	
+57	PG1	GPIO_EXTI1	
+87	PG2	GPIO_EXTI2	
+88	PG3	GPIO_EXTI3	
+114	PD0	GPIO_Output	
+115	PD1	GPIO_Output	
+116	PD2	GPIO_Output	
+117	PD3	GPIO_Output	
+118	PD4	GPIO_Output	
+119	PD5	GPIO_Output	
+122	PD6	GPIO_Output	
+123	PD7	GPIO_Output	
+
+
+
+SOFTWARE PROJECT
+
+Project Settings : 
+Project Name : EXTI_1
+Project Folder : C:\Users\Jang\STM32CubeIDE\workspace_1.10.1\EXTI_1
+Toolchain / IDE : STM32CubeIDE
+Firmware Package Name and Version : STM32Cube FW_F4 V1.27.1
+
+
+Code Generation Settings : 
+STM32Cube MCU packages and embedded software packs : Copy only the necessary library files
+Generate peripheral initialization as a pair of '.c/.h' files per peripheral : No
+Backup previously generated files when re-generating : No
+Delete previously generated files when not re-generated : Yes
+Set all free pins as analog (to optimize the power consumption) : No
+
+
+Toolchains Settings : 
+Compiler Optimizations : 
+
+
+
+
+
