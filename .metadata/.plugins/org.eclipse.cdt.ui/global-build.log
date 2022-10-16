@@ -1,21 +1,79 @@
-19:09:23 **** Incremental Build of configuration Debug for project TIM_03 ****
+22:50:23 **** Incremental Build of configuration Debug for project UART_03 ****
 make -j4 all 
 arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F429xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-arm-none-eabi-gcc -o "TIM_03.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Jang\STM32CubeIDE\workspace_1.10.1\TIM_03\STM32F429ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="TIM_03.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: TIM_03.elf
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:121:35: warning: passing argument 2 of 'HAL_UART_Receive' from incompatible pointer type [-Wincompatible-pointer-types]
+  121 |      if(HAL_UART_Receive(&huart3, &data, sizeof(data), 5000)== HAL_OK)
+      |                                   ^~~~~
+      |                                   |
+      |                                   uint16_t * {aka short unsigned int *}
+In file included from ../Core/Inc/stm32f4xx_hal_conf.h:407,
+                 from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Src/main.c:20:
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h:723:72: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'uint16_t *' {aka 'short unsigned int *'}
+  723 | HAL_StatusTypeDef HAL_UART_Receive(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                               ~~~~~~~~~^~~~~
+../Core/Src/main.c:123:20: warning: multi-character character constant [-Wmultichar]
+  123 |         if(data == '11'){
+      |                    ^~~~
+../Core/Src/main.c:125:12: warning: implicit declaration of function 'LED_On'; did you mean 'LED_OnOff'? [-Wimplicit-function-declaration]
+  125 |            LED_On(0x01);
+      |            ^~~~~~
+      |            LED_OnOff
+../Core/Src/main.c:127:20: warning: multi-character character constant [-Wmultichar]
+  127 |         if(data == '01'){
+      |                    ^~~~
+../Core/Src/main.c:129:12: warning: implicit declaration of function 'LED_Off'; did you mean 'LED_OnOff'? [-Wimplicit-function-declaration]
+  129 |            LED_Off(0x01);
+      |            ^~~~~~~
+      |            LED_OnOff
+../Core/Src/main.c:131:20: warning: multi-character character constant [-Wmultichar]
+  131 |         if(data == '12'){
+      |                    ^~~~
+../Core/Src/main.c:135:20: warning: multi-character character constant [-Wmultichar]
+  135 |         if(data == '02'){
+      |                    ^~~~
+../Core/Src/main.c:139:20: warning: multi-character character constant [-Wmultichar]
+  139 |         if(data == '13'){
+      |                    ^~~~
+../Core/Src/main.c:143:20: warning: multi-character character constant [-Wmultichar]
+  143 |         if(data == '03'){
+      |                    ^~~~
+../Core/Src/main.c:147:20: warning: multi-character character constant [-Wmultichar]
+  147 |         if(data == '14'){
+      |                    ^~~~
+../Core/Src/main.c:151:20: warning: multi-character character constant [-Wmultichar]
+  151 |         if(data == '04'){
+      |                    ^~~~
+../Core/Src/main.c: At top level:
+../Core/Src/main.c:293:6: warning: conflicting types for 'LED_On'
+  293 | void LED_On(int led)
+      |      ^~~~~~
+../Core/Src/main.c:125:12: note: previous implicit declaration of 'LED_On' was here
+  125 |            LED_On(0x01);
+      |            ^~~~~~
+../Core/Src/main.c:298:6: warning: conflicting types for 'LED_Off'
+  298 | void LED_Off(int led)
+      |      ^~~~~~~
+../Core/Src/main.c:129:12: note: previous implicit declaration of 'LED_Off' was here
+  129 |            LED_Off(0x01);
+      |            ^~~~~~~
+arm-none-eabi-gcc -o "UART_03.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Jang\STM32CubeIDE\workspace_1.10.1\UART_03\STM32F429ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="UART_03.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: UART_03.elf
  
-arm-none-eabi-size   TIM_03.elf 
-arm-none-eabi-objdump -h -S  TIM_03.elf  > "TIM_03.list"
+arm-none-eabi-size   UART_03.elf 
+arm-none-eabi-objdump -h -S  UART_03.elf  > "UART_03.list"
    text	   data	    bss	    dec	    hex	filename
-   9700	     20	   1732	  11452	   2cbc	TIM_03.elf
+  11792	    228	   1636	  13656	   3558	UART_03.elf
 Finished building: default.size.stdout
  
-Finished building: TIM_03.list
+Finished building: UART_03.list
  
-19:09:27 **** Incremental Build of configuration Debug for project TIM_03 ****
+22:50:26 **** Incremental Build of configuration Debug for project UART_03 ****
 make -j4 all 
-arm-none-eabi-size   TIM_03.elf 
+arm-none-eabi-size   UART_03.elf 
    text	   data	    bss	    dec	    hex	filename
-   9700	     20	   1732	  11452	   2cbc	TIM_03.elf
+  11792	    228	   1636	  13656	   3558	UART_03.elf
 Finished building: default.size.stdout
  
