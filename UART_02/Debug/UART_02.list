@@ -430,9 +430,9 @@ int main(void)
  8000550:	79fb      	ldrb	r3, [r7, #7]
  8000552:	2b32      	cmp	r3, #50	; 0x32
  8000554:	d10b      	bne.n	800056e <main+0x7e>
-    		 HAL_UART_Transmit(&huart3,(uint8_t*)TxBuffer_3 , TxBufferSize_2, 0xFFFF);
+    		 HAL_UART_Transmit(&huart3,(uint8_t*)TxBuffer_3 , TxBufferSize_3, 0xFFFF);
  8000556:	f64f 73ff 	movw	r3, #65535	; 0xffff
- 800055a:	2213      	movs	r2, #19
+ 800055a:	2215      	movs	r2, #21
  800055c:	4916      	ldr	r1, [pc, #88]	; (80005b8 <main+0xc8>)
  800055e:	4814      	ldr	r0, [pc, #80]	; (80005b0 <main+0xc0>)
  8000560:	f001 fb2d 	bl	8001bbe <HAL_UART_Transmit>
@@ -445,9 +445,9 @@ int main(void)
  800056e:	79fb      	ldrb	r3, [r7, #7]
  8000570:	2b33      	cmp	r3, #51	; 0x33
  8000572:	d10b      	bne.n	800058c <main+0x9c>
-    		 HAL_UART_Transmit(&huart3,(uint8_t*)TxBuffer_4 , TxBufferSize_2, 0xFFFF);
+    		 HAL_UART_Transmit(&huart3,(uint8_t*)TxBuffer_4 , TxBufferSize_4, 0xFFFF);
  8000574:	f64f 73ff 	movw	r3, #65535	; 0xffff
- 8000578:	2213      	movs	r2, #19
+ 8000578:	2217      	movs	r2, #23
  800057a:	4910      	ldr	r1, [pc, #64]	; (80005bc <main+0xcc>)
  800057c:	480c      	ldr	r0, [pc, #48]	; (80005b0 <main+0xc0>)
  800057e:	f001 fb1e 	bl	8001bbe <HAL_UART_Transmit>
@@ -460,9 +460,9 @@ int main(void)
  800058c:	79fb      	ldrb	r3, [r7, #7]
  800058e:	2b34      	cmp	r3, #52	; 0x34
  8000590:	d1c5      	bne.n	800051e <main+0x2e>
-    		 HAL_UART_Transmit(&huart3,(uint8_t*)TxBuffer_5 , TxBufferSize_2, 0xFFFF);
+    		 HAL_UART_Transmit(&huart3,(uint8_t*)TxBuffer_5 , TxBufferSize_5, 0xFFFF);
  8000592:	f64f 73ff 	movw	r3, #65535	; 0xffff
- 8000596:	2213      	movs	r2, #19
+ 8000596:	2219      	movs	r2, #25
  8000598:	4909      	ldr	r1, [pc, #36]	; (80005c0 <main+0xd0>)
  800059a:	4805      	ldr	r0, [pc, #20]	; (80005b0 <main+0xc0>)
  800059c:	f001 fb0f 	bl	8001bbe <HAL_UART_Transmit>

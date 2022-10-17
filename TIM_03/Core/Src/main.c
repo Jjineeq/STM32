@@ -122,10 +122,12 @@ int main(void)
         speed2 = 0;
      }
      if (count1 % 2 == 0){
-        LED_OnOff(led&&led2, 400);
+        LED_OnOff(led, 400);
+        LED_OnOff(led2, 400);
      }
      if (count1 % 2 == 1){
-        LED_OnOff(led&&led2, 200);
+        LED_OnOff(led, 200);
+        LED_OnOff(led2, 200);
      }
     /* USER CODE END WHILE */
 
@@ -250,7 +252,7 @@ static void MX_TIM4_Init(void)
 
   /* USER CODE END TIM4_Init 1 */
   htim4.Instance = TIM4;
-  htim4.Init.Prescaler = 99;
+  htim4.Init.Prescaler = 999;
   htim4.Init.CounterMode = TIM_COUNTERMODE_UP;
   htim4.Init.Period = 9999;
   htim4.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
