@@ -49,6 +49,8 @@ extern "C" {
 
 /* USER CODE END EM */
 
+void HAL_TIM_MspPostInit(TIM_HandleTypeDef *htim);
+
 /* Exported functions prototypes ---------------------------------------------*/
 void Error_Handler(void);
 
@@ -60,8 +62,8 @@ void Error_Handler(void);
 /* USER CODE BEGIN Private defines */
 #define DEST_IP_ADDR0	192
 #define DEST_IP_ADDR1	168
-#define DEST_IP_ADDR2	37
-#define	DEST_IP_ADDR3	12
+#define DEST_IP_ADDR2	0
+#define	DEST_IP_ADDR3	4
 #define DEST_PORT	7000
 
 #define GPIO_LED	 GPIOD
