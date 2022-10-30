@@ -1,10 +1,10 @@
-23:05:57 **** Incremental Build of configuration Debug for project TCPIP_1 ****
+22:42:53 **** Incremental Build of configuration Debug for project TCPIP_1 ****
 make -j4 all 
 arm-none-eabi-size   TCPIP_1.elf 
    text	   data	    bss	    dec	    hex	filename
-  81260	    152	  35432	 116844	  1c86c	TCPIP_1.elf
+  84032	    152	  35504	 119688	  1d388	TCPIP_1.elf
 Finished building: default.size.stdout
  
 
-23:05:59 Build Finished. 0 errors, 0 warnings. (took 1s.486ms)
+22:42:55 Build Finished. 0 errors, 0 warnings. (took 1s.792ms)
 

@@ -21,8 +21,13 @@
 #include "lwip/tcp.h"
 #include "lwip/memp.h"
 
-#include <stdio.h>
 #include <string.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+uint16_t led = 0x01;
+
 
 #if LWIP_TCP
 
@@ -173,45 +178,160 @@ static err_t tcp_echoclient_connected(void *arg, struct tcp_pcb *tpcb, err_t err
 static err_t   tcp_echoclient_recv(void *arg, struct tcp_pcb *tpcb, struct pbuf *p, err_t err)
 { 
 		char * cp;
-		
+		//srand(time(NULL));
 	 // -- <6-1> 수신받은 데이터를 cp에 대입
 		cp  = p->payload; 
 
 	 // -- <6-2> cp == <L10>이면 LED1을 Off하고 대응되는 메시지를 서버로 보낸다
 	 // 이하 비슷한 작업을 수행한다.
 
-		if(strcmp(cp,"<L10>") == 0) {
-			HAL_GPIO_WritePin(GPIO_LED, LED1, GPIO_PIN_RESET);
-			message_send_client(tpcb, 10);
+		if(strcmp(cp,"start") == 0) {
+			srand(time(NULL));
+			int k[8] = {0};
+			int count = 0;
+			for (int q = 0; q<8 ; q++)
+						{
+							k[q] = rand()%9;
+							k[0] = rand()%9;
+   						    k[1] = rand()%9;
+							k[2] = rand()%9;
+							k[3] = rand()%9;
+							k[4] = rand()%9;
+							k[5] = rand()%9;
+							k[6] = rand()%9;
+							k[7] = rand()%9;
+
+							if(k[0]==1){
+								HAL_GPIO_WritePin(GPIO_LED,LED1,GPIO_PIN_SET);
+								message_send_client(tpcb, 10);
+								count++;
+				//				HAL_Delay(1000);
+				//				HAL_GPIO_WritePin(GPIO_LED,LED1,GPIO_PIN_RESET);
+							}
+							if(k[1]==2){
+								HAL_GPIO_WritePin(GPIO_LED,LED2,GPIO_PIN_SET);
+								message_send_client(tpcb, 11);
+								count++;
+				//				HAL_Delay(1000);
+				//				HAL_GPIO_WritePin(GPIO_LED,LED2,GPIO_PIN_RESET);
+							}
+							if(k[2]==3){
+								HAL_GPIO_WritePin(GPIO_LED,LED3,GPIO_PIN_SET);
+								message_send_client(tpcb, 12);
+								count++;
+				//				HAL_Delay(1000);
+				//				HAL_GPIO_WritePin(GPIO_LED,LED3,GPIO_PIN_RESET);
+							}
+							if(k[3]==4){
+								HAL_GPIO_WritePin(GPIO_LED,LED4,GPIO_PIN_SET);
+								message_send_client(tpcb, 13);
+								count++;
+				//				HAL_Delay(1000);
+				//				HAL_GPIO_WritePin(GPIO_LED,LED4,GPIO_PIN_RESET);
+							}
+							if(k[4]==5){
+								HAL_GPIO_WritePin(GPIO_LED,LED5,GPIO_PIN_SET);
+								message_send_client(tpcb, 14);
+								count++;
+				//				HAL_Delay(1000);
+				//				HAL_GPIO_WritePin(GPIO_LED,LED5,GPIO_PIN_RESET);
+							}
+							if(k[5]==6){
+								HAL_GPIO_WritePin(GPIO_LED,LED6,GPIO_PIN_SET);
+								message_send_client(tpcb, 15);
+								count++;
+				//				HAL_Delay(1000);
+				//				HAL_GPIO_WritePin(GPIO_LED,LED6,GPIO_PIN_RESET);
+							}
+							if(k[6]==7){
+								HAL_GPIO_WritePin(GPIO_LED,LED7,GPIO_PIN_SET);
+								message_send_client(tpcb, 16);
+								count++;
+				//				HAL_Delay(1000);
+				//				HAL_GPIO_WritePin(GPIO_LED,LED7,GPIO_PIN_RESET);
+							}
+							if(k[7]==8){
+								HAL_GPIO_WritePin(GPIO_LED,LED8,GPIO_PIN_SET);
+								message_send_client(tpcb, 17);
+								count++;
+				//				HAL_Delay(1000);
+				//				HAL_GPIO_WritePin(GPIO_LED,LED8,GPIO_PIN_RESET);
+							}
+
+							}
+			//			for (int j=0; j <9; j ++){
+			//				if(num = save[j])
+			//					index = j;
+			//				if(index != -1)
+			//					k += 1;
+			//			}
+			HAL_Delay(500);
+			HAL_GPIO_WritePin(GPIO_LED, LED_ALL, GPIO_PIN_RESET);
+			HAL_Delay(500);
+
+			if(count <4){
+				message_send_client(tpcb, 49);
+			}
+			else{
+			     HAL_GPIO_WritePin(GPIO_LED,LED1,GPIO_PIN_SET);
+			     HAL_Delay(200);
+			     HAL_GPIO_WritePin(GPIO_LED,LED1,GPIO_PIN_RESET);
+			     HAL_GPIO_WritePin(GPIO_LED,LED2,GPIO_PIN_SET);
+			     HAL_Delay(200);
+			     HAL_GPIO_WritePin(GPIO_LED,LED2,GPIO_PIN_RESET);
+			     HAL_GPIO_WritePin(GPIO_LED,LED3,GPIO_PIN_SET);
+			     HAL_Delay(200);
+			     HAL_GPIO_WritePin(GPIO_LED,LED3,GPIO_PIN_RESET);
+			     HAL_GPIO_WritePin(GPIO_LED,LED4,GPIO_PIN_SET);
+			     HAL_Delay(200);
+			     HAL_GPIO_WritePin(GPIO_LED,LED4,GPIO_PIN_RESET);
+			     HAL_GPIO_WritePin(GPIO_LED,LED5,GPIO_PIN_SET);
+			     HAL_Delay(200);
+			     HAL_GPIO_WritePin(GPIO_LED,LED5,GPIO_PIN_RESET);
+			     HAL_GPIO_WritePin(GPIO_LED,LED6,GPIO_PIN_SET);
+			     HAL_Delay(200);
+			     HAL_GPIO_WritePin(GPIO_LED,LED6,GPIO_PIN_RESET);
+			     HAL_GPIO_WritePin(GPIO_LED,LED7,GPIO_PIN_SET);
+			     HAL_Delay(200);
+			     HAL_GPIO_WritePin(GPIO_LED,LED7,GPIO_PIN_RESET);
+			     HAL_GPIO_WritePin(GPIO_LED,LED8,GPIO_PIN_SET);
+			     HAL_Delay(200);
+			     message_send_client(tpcb, 50);
+			}
+			HAL_Delay(500);
+			HAL_GPIO_WritePin(GPIO_LED, LED_ALL, GPIO_PIN_RESET);
+
+
+
 		}
-		else if(strcmp(cp,"<L11>") == 0) {
-			HAL_GPIO_WritePin(GPIO_LED, LED1, GPIO_PIN_SET);
-			message_send_client(tpcb, 11);
-		}
-		 else if(strcmp(cp,"<L20>") == 0) {
-			HAL_GPIO_WritePin(GPIO_LED, LED2, GPIO_PIN_RESET);
-			message_send_client(tpcb, 20);
-		 }
-		else if(strcmp(cp,"<L21>") == 0) {
-			HAL_GPIO_WritePin(GPIO_LED, LED2, GPIO_PIN_SET);
-			message_send_client(tpcb, 21);
-		}
-		else if(strcmp(cp,"<L30>") == 0)	{
-			HAL_GPIO_WritePin(GPIO_LED, LED3, GPIO_PIN_RESET);
-			message_send_client(tpcb, 30);
-		}
-		else if(strcmp(cp,"<L31>") == 0)	{
-			HAL_GPIO_WritePin(GPIO_LED, LED3, GPIO_PIN_SET);
-			message_send_client(tpcb, 31);
-		}
-		else if(strcmp(cp,"<L40>") == 0)	{
-			HAL_GPIO_WritePin(GPIO_LED, LED4,GPIO_PIN_RESET);
-			message_send_client(tpcb, 40);
-		}
-		else if(strcmp(cp,"<L41>") == 0)	{
-			HAL_GPIO_WritePin(GPIO_LED, LED4, GPIO_PIN_SET);
-			message_send_client(tpcb, 41);
-		}
+//		else if(strcmp(cp,"<L11>") == 0) {
+//			HAL_GPIO_WritePin(GPIO_LED, LED1, GPIO_PIN_SET);
+//			message_send_client(tpcb, 11);
+//		}
+//		 else if(strcmp(cp,"<L20>") == 0) {
+//			HAL_GPIO_WritePin(GPIO_LED, LED2, GPIO_PIN_RESET);
+//			message_send_client(tpcb, 20);
+//		 }
+//		else if(strcmp(cp,"<L21>") == 0) {
+//			HAL_GPIO_WritePin(GPIO_LED, LED2, GPIO_PIN_SET);
+//			message_send_client(tpcb, 21);
+//		}
+//		else if(strcmp(cp,"<L30>") == 0)	{
+//			HAL_GPIO_WritePin(GPIO_LED, LED3, GPIO_PIN_RESET);
+//			message_send_client(tpcb, 30);
+//		}
+//		else if(strcmp(cp,"<L31>") == 0)	{
+//			HAL_GPIO_WritePin(GPIO_LED, LED3, GPIO_PIN_SET);
+//			message_send_client(tpcb, 31);
+//		}
+//		else if(strcmp(cp,"<L40>") == 0)	{
+//			HAL_GPIO_WritePin(GPIO_LED, LED4,GPIO_PIN_RESET);
+//			message_send_client(tpcb, 40);
+//		}
+//		else if(strcmp(cp,"<L41>") == 0)	{
+//			HAL_GPIO_WritePin(GPIO_LED, LED4, GPIO_PIN_SET);
+//			message_send_client(tpcb, 41);
+//		}
 		
 		// Free the p buffer 
 		pbuf_free(p);
@@ -385,22 +505,27 @@ void message_send_client(struct tcp_pcb *tpcb, int number)
 		
 			switch(number) {
 					// --  <11-1>  number의 값에 따라 대응되는 메시지를 data에 저장.
-					case 10 :	sprintf((char*)data, " LED 1 is OFF");
+					case 10 :	sprintf((char*)data, " 1");
 									break;
-					case 11 :	sprintf((char*)data, " LED 1 is ON !!");
+					case 11 :	sprintf((char*)data, " 2");
 									break;
-					case 20 :	sprintf((char*)data, " LED 2 is OFF");
+					case 12 :	sprintf((char*)data, " 3");
 									break;
-					case 21 :	sprintf((char*)data, " LED 2 is ON !!");
+					case 13 :	sprintf((char*)data, " 4");
 									break;
-					case 30 :	sprintf((char*)data, " LED 3 is OFF");
+					case 14 :	sprintf((char*)data, " 5");
 									break;
-					case 31 :	sprintf((char*)data, " LED 3 is ON !!");
+					case 15 :	sprintf((char*)data, " 6");
 									break;
-					case 40 :	sprintf((char*)data, " LED 4 is OFF");
+					case 16 :	sprintf((char*)data, " 7");
 									break;
-					case 41 :	sprintf((char*)data, " LED 4 is ON !!");
+					case 17 :	sprintf((char*)data, " 8");
 									break;
+					case 49 : sprintf((char*)data, " Retry!");
+					   	   	   	    break;
+					case 50 : sprintf((char*)data, " Bingo!");
+					   	   	   	    break;
+
 					case 99 :	sprintf((char*)data, " Connected ! ");
 									break;							
 			}

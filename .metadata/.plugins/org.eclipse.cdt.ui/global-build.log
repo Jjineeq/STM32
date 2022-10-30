@@ -1,21 +1,21 @@
-23:05:49 **** Incremental Build of configuration Debug for project TCPIP_1 ****
+22:42:33 **** Incremental Build of configuration Debug for project TCPIP_1 ****
 make -j4 all 
-arm-none-eabi-gcc "../LWIP/App/lwip.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F429xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../LWIP/App -I../LWIP/Target -I../Middlewares/Third_Party/LwIP/src/include -I../Middlewares/Third_Party/LwIP/system -I../Drivers/BSP/Components/lan8742 -I../Middlewares/Third_Party/LwIP/src/include/netif/ppp -I../Middlewares/Third_Party/LwIP/src/include/lwip -I../Middlewares/Third_Party/LwIP/src/include/lwip/apps -I../Middlewares/Third_Party/LwIP/src/include/lwip/priv -I../Middlewares/Third_Party/LwIP/src/include/lwip/prot -I../Middlewares/Third_Party/LwIP/src/include/netif -I../Middlewares/Third_Party/LwIP/src/include/compat/posix -I../Middlewares/Third_Party/LwIP/src/include/compat/posix/arpa -I../Middlewares/Third_Party/LwIP/src/include/compat/posix/net -I../Middlewares/Third_Party/LwIP/src/include/compat/posix/sys -I../Middlewares/Third_Party/LwIP/src/include/compat/stdc -I../Middlewares/Third_Party/LwIP/system/arch -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"LWIP/App/lwip.d" -MT"LWIP/App/lwip.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "LWIP/App/lwip.o"
+arm-none-eabi-gcc "../Core/Src/tcp_echoclient_2022.1010.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F429xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../LWIP/App -I../LWIP/Target -I../Middlewares/Third_Party/LwIP/src/include -I../Middlewares/Third_Party/LwIP/system -I../Drivers/BSP/Components/lan8742 -I../Middlewares/Third_Party/LwIP/src/include/netif/ppp -I../Middlewares/Third_Party/LwIP/src/include/lwip -I../Middlewares/Third_Party/LwIP/src/include/lwip/apps -I../Middlewares/Third_Party/LwIP/src/include/lwip/priv -I../Middlewares/Third_Party/LwIP/src/include/lwip/prot -I../Middlewares/Third_Party/LwIP/src/include/netif -I../Middlewares/Third_Party/LwIP/src/include/compat/posix -I../Middlewares/Third_Party/LwIP/src/include/compat/posix/arpa -I../Middlewares/Third_Party/LwIP/src/include/compat/posix/net -I../Middlewares/Third_Party/LwIP/src/include/compat/posix/sys -I../Middlewares/Third_Party/LwIP/src/include/compat/stdc -I../Middlewares/Third_Party/LwIP/system/arch -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/tcp_echoclient_2022.1010.d" -MT"Core/Src/tcp_echoclient_2022.1010.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/tcp_echoclient_2022.1010.o"
 arm-none-eabi-gcc -o "TCPIP_1.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Jang\STM32CubeIDE\workspace_1.10.1\TCPIP_1\STM32F429ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="TCPIP_1.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 Finished building target: TCPIP_1.elf
  
 arm-none-eabi-size   TCPIP_1.elf 
 arm-none-eabi-objdump -h -S  TCPIP_1.elf  > "TCPIP_1.list"
    text	   data	    bss	    dec	    hex	filename
-  81260	    152	  35432	 116844	  1c86c	TCPIP_1.elf
+  84032	    152	  35504	 119688	  1d388	TCPIP_1.elf
 Finished building: default.size.stdout
  
 Finished building: TCPIP_1.list
  
-23:05:57 **** Incremental Build of configuration Debug for project TCPIP_1 ****
+22:42:53 **** Incremental Build of configuration Debug for project TCPIP_1 ****
 make -j4 all 
 arm-none-eabi-size   TCPIP_1.elf 
    text	   data	    bss	    dec	    hex	filename
-  81260	    152	  35432	 116844	  1c86c	TCPIP_1.elf
+  84032	    152	  35504	 119688	  1d388	TCPIP_1.elf
 Finished building: default.size.stdout
  

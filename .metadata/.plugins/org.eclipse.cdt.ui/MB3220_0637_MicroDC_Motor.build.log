@@ -1,0 +1,10 @@
+22:29:41 **** Incremental Build of configuration Debug for project MB3220_0637_MicroDC_Motor ****
+make -j4 all 
+arm-none-eabi-size   MB3220_0637_MicroDC_Motor.elf 
+   text	   data	    bss	    dec	    hex	filename
+  21408	    128	   1744	  23280	   5af0	MB3220_0637_MicroDC_Motor.elf
+Finished building: default.size.stdout
+ 
+
+22:29:42 Build Finished. 0 errors, 0 warnings. (took 620ms)
+

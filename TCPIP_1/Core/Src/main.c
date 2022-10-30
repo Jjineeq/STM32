@@ -19,6 +19,8 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "lwip.h"
+#include "defines.h"
+#include "tm_stm32f4_rng.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -40,12 +42,19 @@
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
+ADC_HandleTypeDef hadc1;
+
 TIM_HandleTypeDef htim2;
 TIM_HandleTypeDef htim4;
 TIM_HandleTypeDef htim5;
 
 /* USER CODE BEGIN PV */
 struct netif gnetif;
+uint8_t dir = 0;
+uint16_t interval = 50;
+int16_t temp_Interval;
+int32_t temp_CCR = 0;
+uint32_t turningPoint = 2000;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -54,9 +63,15 @@ static void MX_GPIO_Init(void);
 static void MX_TIM4_Init(void);
 static void MX_TIM2_Init(void);
 static void MX_TIM5_Init(void);
+static void MX_ADC1_Init(void);
 /* USER CODE BEGIN PFP */
 void LED_OnOff(int, int);
 void User_notification(struct netif *netif);
+//int _write(int file, char* p, int len)
+//{
+//	if(HAL_UART_Transmit(&huart3, (uint8_t *)p, len, 10) == HAL_OK ) return len;
+//	else return 0;
+//}
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -71,7 +86,7 @@ void User_notification(struct netif *netif);
 int main(void)
 {
   /* USER CODE BEGIN 1 */
-
+	uint16_t led = 0x01;
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -96,10 +111,12 @@ int main(void)
   MX_TIM4_Init();
   MX_TIM2_Init();
   MX_TIM5_Init();
+  MX_ADC1_Init();
   /* USER CODE BEGIN 2 */
   LED_OnOff(LED_ALL, 500);
   User_notification(&gnetif);
   tcp_echoclient_connect();
+  HAL_TIM_PWM_Start(&htim5, TIM_CHANNEL_1);
 
   /* USER CODE END 2 */
 
@@ -107,7 +124,39 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+//	  if(temp_CCR >= (TIM5->ARR + 1))
+//		  {
+//			temp_CCR = TIM5->ARR + 1;	// 10000
+//			temp_Interval = -interval;
+//		  }
+//		  else if(temp_CCR <= turningPoint)
+//		  {
+//			temp_CCR = turningPoint;
+//			temp_Interval = interval;
+//			dir = !dir;
+//			HAL_GPIO_WritePin(GPIOG, GPIO_PIN_10, dir);
+//		  }
+//		  temp_CCR += temp_Interval;
+//		  if(temp_CCR == 0)
+//		  {
+//			  TIM5->CCR1 = temp_CCR;
+//		  }
+//		  else
+//		  {
+//			  TIM5->CCR1 = temp_CCR - 1;
+//		  }
+//
+//		  printf("Compare : %4d | TEMP : %5d | DIR :%d\r\n", (int)TIM5->CCR1, (int)temp_CCR ,dir);
+//		  HAL_Delay(10);
+
 	  MX_LWIP_Process();
+	  int count = 1;
+	  if(count >= 0){
+		  led<<=1;
+		  if(led>0x80){
+			  led=0x01;
+		  }
+	  }
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -166,6 +215,58 @@ void SystemClock_Config(void)
   {
     Error_Handler();
   }
+}
+
+/**
+  * @brief ADC1 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_ADC1_Init(void)
+{
+
+  /* USER CODE BEGIN ADC1_Init 0 */
+
+  /* USER CODE END ADC1_Init 0 */
+
+  ADC_ChannelConfTypeDef sConfig = {0};
+
+  /* USER CODE BEGIN ADC1_Init 1 */
+
+  /* USER CODE END ADC1_Init 1 */
+
+  /** Configure the global features of the ADC (Clock, Resolution, Data Alignment and number of conversion)
+  */
+  hadc1.Instance = ADC1;
+  hadc1.Init.ClockPrescaler = ADC_CLOCK_SYNC_PCLK_DIV4;
+  hadc1.Init.Resolution = ADC_RESOLUTION_12B;
+  hadc1.Init.ScanConvMode = DISABLE;
+  hadc1.Init.ContinuousConvMode = DISABLE;
+  hadc1.Init.DiscontinuousConvMode = DISABLE;
+  hadc1.Init.ExternalTrigConvEdge = ADC_EXTERNALTRIGCONVEDGE_NONE;
+  hadc1.Init.ExternalTrigConv = ADC_SOFTWARE_START;
+  hadc1.Init.DataAlign = ADC_DATAALIGN_RIGHT;
+  hadc1.Init.NbrOfConversion = 1;
+  hadc1.Init.DMAContinuousRequests = DISABLE;
+  hadc1.Init.EOCSelection = ADC_EOC_SINGLE_CONV;
+  if (HAL_ADC_Init(&hadc1) != HAL_OK)
+  {
+    Error_Handler();
+  }
+
+  /** Configure for the selected ADC regular channel its corresponding rank in the sequencer and its sample time.
+  */
+  sConfig.Channel = ADC_CHANNEL_4;
+  sConfig.Rank = 1;
+  sConfig.SamplingTime = ADC_SAMPLETIME_3CYCLES;
+  if (HAL_ADC_ConfigChannel(&hadc1, &sConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN ADC1_Init 2 */
+
+  /* USER CODE END ADC1_Init 2 */
+
 }
 
 /**
@@ -397,6 +498,8 @@ void User_notification(struct netif *netif)
 {
 	if(netif_is_up(netif)){
 		HAL_GPIO_WritePin(GPIO_LED, LED7, GPIO_PIN_SET);
+		HAL_Delay(500);
+		HAL_GPIO_WritePin(GPIO_LED, LED7, GPIO_PIN_RESET);
 	}
 	else{
 		HAL_GPIO_WritePin(GPIO_LED, LED8, GPIO_PIN_SET);
